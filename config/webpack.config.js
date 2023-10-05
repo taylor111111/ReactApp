@@ -106,8 +106,11 @@ module.exports = function (webpackEnv) {
 
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
+    console.log('study: style-loader:', require.resolve('style-loader'));
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
+        // study: https://dev.to/stephencweiss/what-is-require-resolve-and-how-does-it-work-1ho4
+        // eg: study: style-loader: /Users/xiaoyuehu/Project/FTA/NextJS/ReactApp/node_modules/style-loader/dist/cjs.js
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
         // css is located in `static/css`, use '../../' to locate index.html folder
@@ -129,6 +132,7 @@ module.exports = function (webpackEnv) {
           postcssOptions: {
             // Necessary for external CSS imports to work
             // https://github.com/facebook/create-react-app/issues/2677
+            // study-postcss: https://blog.csdn.net/weixin_62273462/article/details/121088996
             ident: 'postcss',
             config: false,
             plugins: !useTailwind
@@ -169,6 +173,7 @@ module.exports = function (webpackEnv) {
     if (preProcessor) {
       loaders.push(
         {
+          // study resolve-url-loader: https://juejin.cn/s/node%20resolve-url-loader
           loader: require.resolve('resolve-url-loader'),
           options: {
             sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
