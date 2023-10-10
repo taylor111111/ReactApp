@@ -396,6 +396,7 @@ module.exports = function (webpackEnv) {
                   },
                 },
                 {
+                  // study file-loader: https://www.jianshu.com/p/7bdda6d07278
                   loader: require.resolve('file-loader'),
                   options: {
                     name: 'static/media/[name].[hash].[ext]',
